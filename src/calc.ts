@@ -28,9 +28,9 @@ export function calculeFacture(body: Body): { total: number } {
 
   const totalAvecTaxes = appliquerTaxeDePays(total, body.country);
 
-  const totalAvecRéduction = appliquerReductionStandard(totalAvecTaxes);
+  // const totalAvecRéduction = appliquerReductionStandard(totalAvecTaxes);
 
-  return { total: totalAvecRéduction };
+  return { total: totalAvecTaxes };
 }
 
 function appliquerTaxeDePays(total: number, pays: string): number {
