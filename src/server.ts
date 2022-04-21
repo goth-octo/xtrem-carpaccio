@@ -18,7 +18,11 @@ router.post('/feedback', async (ctx) => {
 router.post('/order', async (ctx) => {
   console.log('Order received', ctx.request.body);
 
-  ctx.body = calculeFacture(ctx.request.body);
+  if (ctx.request.body.reduction === 'STANDARD') {
+    ctx.body = calculeFacture(ctx.request.body);
+  } else {
+    ctx.body = {};
+  }
 });
 
 app.use(router.routes());
