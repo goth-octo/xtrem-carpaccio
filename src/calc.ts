@@ -12,6 +12,18 @@ type Body = Readonly<{
 }>;
 
 export function calculeFacture(body: Body): { total: number } {
+  if (
+    body.prices === undefined ||
+    body.quantities === undefined ||
+    body.country === undefined ||
+    body.reduction === undefined
+  ) {
+    throw new Error('Body mal formé');
+  }
+
+  if (body.prices.length !== body.quantities.length) {
+    throw new Error('Pas les mêmes');
+  }
   const total = accumulePrixEtQtt(body);
 
   const totalAvecTaxes = appliquerTaxeDePays(total, body.country);

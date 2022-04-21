@@ -19,7 +19,12 @@ router.post('/order', async (ctx) => {
   console.log('Order received', ctx.request.body);
 
   if (ctx.request.body.reduction === 'STANDARD') {
-    ctx.body = calculeFacture(ctx.request.body);
+    try {
+      ctx.body = calculeFacture(ctx.request.body);
+    } catch (e) {
+      ctx.status = 400;
+      ctx.body = {};
+    }
   } else {
     console.error('La réduction est pas STANDARD !!!!!!!!', ctx.request.body.reduction);
     ctx.body = {};
