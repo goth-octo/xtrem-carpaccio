@@ -29,6 +29,8 @@ function appliquerReductionStandard(totalAprèsTaxes: number): number {
     return (totalAprèsTaxes *= 1 - 0.05);
   } else if (totalAprèsTaxes >= 1000) {
     return (totalAprèsTaxes *= 1 - 0.03);
+  } else {
+    return totalAprèsTaxes;
   }
 }
 
