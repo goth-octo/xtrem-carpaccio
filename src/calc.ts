@@ -4,7 +4,14 @@ export function sayHello() {
   return 'Hello World';
 }
 
-export function calculeFacture(body: any): { total: number } {
+type Body = Readonly<{
+  prices: number[];
+  quantities: number[];
+  country: string;
+  reduction: string;
+}>;
+
+export function calculeFacture(body: Body): { total: number } {
   const total = accumulePrixEtQtt(body);
 
   const totalAvecTaxes = appliquerTaxeDePays(total, body.country);
@@ -35,7 +42,7 @@ function appliquerReductionStandard(totalAprèsTaxes: number): number {
   }
 }
 
-function accumulePrixEtQtt(body: any) {
+function accumulePrixEtQtt(body: Body): number {
   let total = 0;
   body.prices.forEach((price: number, index: number) => {
     total += price * body.quantities[index];
