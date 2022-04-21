@@ -16,7 +16,7 @@ router.post('/feedback', async (ctx) => {
 });
 
 router.post('/order', async (ctx) => {
-  ctx.body = calculeFacture();
+  ctx.body = calculeFacture(ctx.request.body);
 });
 
 app.use(router.routes());

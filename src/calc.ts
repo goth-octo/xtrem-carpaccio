@@ -4,12 +4,18 @@ export function sayHello() {
   return 'Hello World';
 }
 
-export function calculeFacture(body: any) {
-  let total = accumulePrixEtQtt(body);
-  total *= 1.2;
+export function calculeFacture(body: any): { total: number } {
+  const total = accumulePrixEtQtt(body);
 
-  return { total };
+  const totalAvecTaxes = appliquerTaxe(total);
+
+  return { total: totalAvecTaxes };
 }
+
+function appliquerTaxe(total: number) {
+  return total * 1.2;
+}
+
 function accumulePrixEtQtt(body: any) {
   let total = 0;
   body.prices.forEach((price: number, index: number) => {
