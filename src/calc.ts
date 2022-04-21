@@ -35,6 +35,11 @@ export function calculeFacture(body: Body): { total: number } {
 
 function appliquerTaxeDePays(total: number, pays: string): number {
   const taxe = taxeParPays[pays];
+
+  if (pays === 'SK' && total >= 2000) {
+    return total * 1.25;
+  }
+
   return total * taxe;
 }
 
