@@ -16,6 +16,8 @@ router.post('/feedback', async (ctx) => {
 });
 
 router.post('/order', async (ctx) => {
+  console.log('Order received', ctx.request.body);
+
   ctx.body = calculeFacture(ctx.request.body);
 });
 
